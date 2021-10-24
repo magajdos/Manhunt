@@ -1,0 +1,19 @@
+Ve hre budou dve skupiny hracu. Lovci a Korist. Lovcu je vice korist je jen jedna.
+Hra zacne spawnovani lovcu do stejneho mista jako korist, lovci se nemohou 15s hybat.
+Cilem hry pro lovce je zabit Korist nez vyprsi  10minut. Pokud se to nepovede musi Koristi zabranit projit portalem,
+ktery se po teto dobe otevre.
+Cile hry pro korist je prezit 10 minut a pote uniknout portalem do 5 minut.
+Hriste je omezene svymi rozmery.
+Lovci se mohou neomezene respawnovat do spawn pointu a maji kompas ktery sleduje korist.
+Korist ma nasledujici vyhody:
+- Jednou za minutu 10s neviditelnosti
+- Jednou za hru nahodny teleport
+- Jednou za 2 minuty vystrel z kuse smrti (zabije koho trefi)
+- Jednou za minut 10s zrychleni
+- Celou hru o 4 hp vic
+
+Po 10 minutach se otevre unikovy portal, korist ma kompas ktery na nej ukazuje a kompasy lovcu na nej tak ezacnou ukazovat.
+
+Dalsi:
+Lovci se nemohou zranit navzajem
+z vytezeni medi zeleza a zlata vypadne ingot
