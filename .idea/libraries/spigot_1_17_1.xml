@@ -1,11 +1,7 @@
 <component name="libraryTable">
   <library name="spigot-1.17.1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Dead Craft/spigot-1.17.1.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../Dead Craft/spigot-1.17.1.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
