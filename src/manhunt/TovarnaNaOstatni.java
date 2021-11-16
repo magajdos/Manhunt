@@ -1,3 +1,5 @@
+package manhunt;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,7 +29,7 @@ public class TovarnaNaOstatni {
         teleporter.getEquipment().setHelmet(hat);
     }
 
-    public ItemStack TrackingKompas() {
+    public static ItemStack TrackingKompas() {
         ItemStack kompas = new ItemStack(Material.COMPASS);
         kompas.addEnchantment(Enchantment.VANISHING_CURSE, 1);
         var itemMeta = kompas.getItemMeta();

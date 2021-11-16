@@ -1,0 +1,7 @@
+name: ManHunt
+version: 1
+api-version: 1.14
+main: manhunt.Main
+commands:
+  StartManHunt:
+  StopManHunt:
