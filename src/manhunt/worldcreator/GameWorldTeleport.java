@@ -1,8 +1,7 @@
 package manhunt.worldcreator;
 
-import com.google.common.collect.Maps;
 import manhunt.PlayersRole;
-import manhunt.TovarnaNaOstatni;
+import manhunt.commands.ItemsFactory;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -16,6 +15,7 @@ public final class GameWorldTeleport {
 
     private final Server server;
     private PlayersRole playersRole;
+    private ItemsFactory itemsFactory = new ItemsFactory();
     //jmeno hrace: pozice
     private final Map<String, Location> playersPositionInHomeWorld = new HashMap<>();
     public GameWorldTeleport(Server server, PlayersRole playersRole) {
@@ -33,7 +33,7 @@ public final class GameWorldTeleport {
                 player.teleport(findSurface(new Location(gameWorld,i++ ,0,15)));
             } else {
                 player.teleport(findSurface(new Location(gameWorld,i++ ,0,0)));
-                player.getInventory().addItem(TovarnaNaOstatni.TrackingKompas());
+                player.getInventory().addItem(itemsFactory.trackingKompas());
             }
         }
     }

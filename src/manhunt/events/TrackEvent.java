@@ -1,7 +1,9 @@
-package manhunt;
+package manhunt.events;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import manhunt.PlayersRole;
+import manhunt.commands.ItemsFactory;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +17,7 @@ import java.util.List;
 
 public class TrackEvent implements Listener {
     private final PlayersRole playersRole;
+    private final ItemsFactory itemsFactory = new ItemsFactory();
 
     public TrackEvent(PlayersRole playersRole) {
         this.playersRole = playersRole;
@@ -24,14 +27,13 @@ public class TrackEvent implements Listener {
     public void track(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             Player player = event.getPlayer();
-            if (player.getInventory().getItemInMainHand().getType().equals(Material.COMPASS))
-                if (player.getInventory().getItemInMainHand().getItemMeta().getLore().get(0).equals("[Right Click] to track")) {
-                    ItemStack compas = (ItemStack) player.getInventory().getItemInMainHand();
-                    CompassMeta itemMeta = (CompassMeta) compas.getItemMeta();
-                    List<Player> players = Lists.newArrayList(player.getServer().getOnlinePlayers());
-                    itemMeta.setLodestone(playersRole.getPrey(players).get().getLocation());
-                    player.sendMessage("tracking...");
-                }
+            if (itemsFactory.isTrackingKompass(player.getInventory().getItemInMainHand())) {
+                ItemStack compas = player.getInventory().getItemInMainHand();
+                CompassMeta itemMeta = (CompassMeta) compas.getItemMeta();
+                List<Player> players = Lists.newArrayList(player.getServer().getOnlinePlayers());
+                itemMeta.setLodestone(playersRole.getPrey(players).getLocation());
+                player.sendMessage("tracking...");
+            }
         }
     }
 }

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ManHunt">
+    <output-path>$PROJECT_DIR$/out/artifacts/ManHunt</output-path>
+    <root id="archive" name="ManHunt.jar">
+      <element id="module-output" name="Manhunt" />
+      <element id="library" level="application" name="spigot-1.17.1" />
+      <element id="file-copy" path="$PROJECT_DIR$/res/plugin.yml" />
+    </root>
+  </artifact>
+</component>

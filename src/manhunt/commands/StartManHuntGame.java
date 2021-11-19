@@ -6,6 +6,7 @@ import manhunt.exceptions.UserException;
 import manhunt.worldcreator.GameWorldTeleport;
 import manhunt.worldcreator.ManHuntWorldCreator;
 import org.bukkit.Server;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,13 +38,16 @@ public final class StartManHuntGame implements CommandExecutor {
             if (velikostSveta > 1500) throw new UserException("Svet nesmi byt vetsi nez 1500");
             //korist
             var jmenoKoristi = strings[1];
-            playersRole.setPrey(jmenoKoristi);
-
             var jmenoSveta = manHuntWorldCreator.createWorld(velikostSveta);
             teleport.teleportToGame();
+            playersRole.setPrey(jmenoKoristi);
         } catch (NumberFormatException e) {
             throw new UserException("Velikost sveta (parameter 1) musi byt cislo.");
         }
         return true;
+    }
+
+    private void setupPray(){
+        playersRole.getPrey().getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30);
     }
 }

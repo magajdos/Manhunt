@@ -1,6 +1,8 @@
 package manhunt;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -10,49 +12,37 @@ import java.util.stream.Collectors;
 
 public final class PlayersRole {
 
+    private final Server server;
+    private List<Player> hunters;
+    private Player prey;
 
-    private final Set<String> players;
-    private Set<String> hunters;
-    private String prey;
-
-    public PlayersRole(Set<Player> players) {
-        this.players = players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toSet());
+    public PlayersRole(Server server) {
+        this.server = server;
     }
 
     public boolean isPrey(Player player) {
-        return player.getName().equals(prey);
+        return player == prey;
     }
 
     public boolean isHunter(Player player) {
-        return hunters.contains(player.getName());
+        return hunters.contains(player);
     }
 
-    public Set<String> getHunters() {
+    public List<Player> getHunters() {
         return hunters;
     }
 
-    public String getPrey() {
+    public Player getPrey() {
         return prey;
     }
 
-    public Optional<Player> getPrey(List<Player> players) {
-        for (var player : players) {
-            if (player.getName().equals(prey)) {
-                return Optional.of(player);
-            }
-        }
-        return Optional.empty();
+    public void setPrey(String nameOfPrey) {
+        this.prey = server.getOnlinePlayers().stream().filter(player -> player.getName().equals(nameOfPrey)).findFirst().orElseThrow().getPlayer();
+        hunters = server.getOnlinePlayers().stream().filter(player -> !player.getName().equals(nameOfPrey)).collect(Collectors.toList());
     }
 
-    public void setPrey(Player prey) {
-        setPrey(prey.getName());
-    }
-
-    public void setPrey(String prey) {
-        hunters = Sets.newHashSet(players);
-        this.prey = prey;
-        hunters.remove(prey);
+    public void reset(){
+        prey = null;
+        hunters.clear();
     }
 }
