@@ -31,7 +31,7 @@ public class TrackEvent implements Listener {
                 ItemStack compas = player.getInventory().getItemInMainHand();
                 CompassMeta itemMeta = (CompassMeta) compas.getItemMeta();
                 List<Player> players = Lists.newArrayList(player.getServer().getOnlinePlayers());
-                itemMeta.setLodestone(playersRole.getPrey(players).getLocation());
+                itemMeta.setLodestone(playersRole.getPrey().getLocation());
                 player.sendMessage("tracking...");
             }
         }

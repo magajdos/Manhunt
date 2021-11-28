@@ -18,6 +18,7 @@ public final class GameWorldTeleport {
     private ItemsFactory itemsFactory = new ItemsFactory();
     //jmeno hrace: pozice
     private final Map<String, Location> playersPositionInHomeWorld = new HashMap<>();
+
     public GameWorldTeleport(Server server, PlayersRole playersRole) {
         this.playersRole = playersRole;
         this.server = server;
@@ -30,16 +31,22 @@ public final class GameWorldTeleport {
             playersPositionInHomeWorld.put(player.getName(), player.getLocation());
             if (playersRole.isPrey(player)) {
                 //korist bude dale od hunteru
-                player.teleport(findSurface(new Location(gameWorld,i++ ,0,15)));
+                player.teleport(findSurface(new Location(gameWorld, i++, 0, 15)));
             } else {
-                player.teleport(findSurface(new Location(gameWorld,i++ ,0,0)));
+                player.teleport(findSurface(new Location(gameWorld, i++, 0, 0)));
                 player.getInventory().addItem(itemsFactory.trackingKompas());
             }
         }
     }
 
+    public void teleportToGame(Player player) {
+        World gameWorld = server.getWorld(ManHuntWorldCreator.WORLD_NAME);
+        player.teleport(findSurface(new Location(gameWorld, 0, 0, 0)));
+    }
+
+
     public void teleportFromGame() {
-        for (Player player : server.getOnlinePlayers()){
+        for (Player player : server.getOnlinePlayers()) {
             Location positionInHomeWorld = playersPositionInHomeWorld.get(player.getName());
             player.teleport(positionInHomeWorld);
         }
@@ -51,7 +58,7 @@ public final class GameWorldTeleport {
             if (location.getBlock().getType() != Material.AIR) {
                 return location.add(0, 1, 0);
             }
-            location = location.add(0,-1,0);
+            location = location.add(0, -1, 0);
         }
     }
 }
